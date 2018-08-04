@@ -4,11 +4,11 @@ import axios from 'axios'
 import App from './App'
 import router from './router'
 import store from './store'
-import db from '../db/datastore'
+import model from '../db/model'
 import { Tree } from 'element-ui'
 
 // 挂载数据库
-Vue.prototype.$db = db
+Vue.prototype.$model = model
 
 // 引入element-ui组件
 Vue.use(Tree)
