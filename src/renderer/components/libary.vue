@@ -63,9 +63,5 @@
 .libary {
   width: 100%;
   height: 100%;
-  .el-tree {
-    background: transparent;
-    color: #f1f1f1;
-  }
 }
 </style>

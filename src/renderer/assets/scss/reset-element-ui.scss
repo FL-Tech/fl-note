@@ -1,0 +1,13 @@
+// 重置element-ui样式
+.el-tree {
+  background: transparent;
+  color: $MAIN_FONT_COLOR;
+}
+
+.el-tree-node__content:hover {
+  background-color: $HOVER_BACKGROUND_COLOR;
+}
+
+.el-tree-node:focus > .el-tree-node__content {
+  background-color: $HOVER_BACKGROUND_COLOR;
+}
