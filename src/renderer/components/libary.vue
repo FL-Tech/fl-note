@@ -38,7 +38,14 @@
         children.splice(index, 1)
       },
       renderContent (h, { node, data, store }) {
-        return {}
+        return (
+          <span class="custom-tree-node">
+            <span>{node.label}</span>
+            <span>
+              <el-button size="mini" type="text" on-click={ () => this.append(data) }>Append</el-button>
+              <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>Delete</el-button>
+            </span>
+          </span>)
       },
       handleNodeClick (data) {
         console.log(data)
