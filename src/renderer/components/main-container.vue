@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="main-container" @click="globalClickHandle">
     <div class="libary">
       <libary></libary>
     </div>
@@ -21,7 +21,12 @@ import DocList from './doc-list'
 import DragLine from './drag-line'
 
 export default {
-  components: {Libary, DocList, DragLine}
+  components: {Libary, DocList, DragLine},
+  methods: {
+    globalClickHandle () {
+      this.$store.commit('ui/SET', {show: false})
+    }
+  }
 }
 </script>
 
@@ -36,6 +41,9 @@ export default {
   .libary,
   .doc-list {
     width: 200px;
+  }
+  .router-container {
+    flex: 1;
   }
 }
 </style>

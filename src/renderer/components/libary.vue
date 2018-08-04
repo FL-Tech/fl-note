@@ -1,12 +1,17 @@
 <template>
-  <div class="libary">
-    <el-tree :data="libary" :props="defaultProps" default-expand-all :expand-on-click-node="false" :render-content="renderContent" @node-click="handleNodeClick"></el-tree>
+  <div class="libary-container">
+    <context-menu></context-menu>
+    <el-tree :data="libary" :props="defaultProps" default-expand-all :expand-on-click-node="false" @node-click="nodeClickHandle" @node-contextmenu="nodeContextmenuHandle"></el-tree>
   </div>
 </template>
 
 
 <script>
+  import {mapMutations} from 'vuex'
+  import ContextMenu from './context-menu'
+
   export default {
+    components: {ContextMenu},
     data () {
       return {
         libary: this.$model.Libary.value(),
@@ -23,6 +28,9 @@
       // }).write()
     },
     methods: {
+      ...mapMutations('ui', [
+        'SET'
+      ]),
       append (data) {
         const newChild = {label: 'testtest', children: []}
         if (!data.children) {
@@ -30,7 +38,6 @@
         }
         data.children.push(newChild)
       },
-
       remove (node, data) {
         const parent = node.parent
         const children = parent.data.children || parent.data
@@ -39,16 +46,21 @@
       },
       renderContent (h, { node, data, store }) {
         return (
-          <span class="custom-tree-node">
+          <span style="display: flex;align-items: center;justify-content: space-between;padding-right: 8px;" >
             <span>{node.label}</span>
-            <span>
-              <el-button size="mini" type="text" on-click={ () => this.append(data) }>Append</el-button>
-              <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>Delete</el-button>
-            </span>
           </span>)
       },
-      handleNodeClick (data) {
-        console.log(data)
+      nodeClickHandle (e, data) {
+        console.log('触发文档点击事件：')
+        this.$store.commit('ui/SET', {show: false})
+      },
+      nodeContextmenuHandle (e, data, node, c) {
+        console.log('触发文档右键点击事件：', e, data, node, c)
+        this['SET']({
+          show: true,
+          x: e.clientX,
+          y: e.clientY
+        })
       }
     }
   }
@@ -56,8 +68,9 @@
 
 
 <style lang="scss" scoped>
-.libary {
+.libary-container {
   width: 100%;
   height: 100%;
+  user-select: none; // 禁止用户选中文本
 }
 </style>

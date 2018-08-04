@@ -5,13 +5,14 @@ import App from './App'
 import router from './router'
 import store from './store'
 import model from '../db/model'
-import { Tree } from 'element-ui'
+import { Tree, Button } from 'element-ui'
 
 // 挂载数据库
 Vue.prototype.$model = model
 
 // 引入element-ui组件
 Vue.use(Tree)
+Vue.use(Button)
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios

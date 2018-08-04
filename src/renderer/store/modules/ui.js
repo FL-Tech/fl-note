@@ -1,13 +1,19 @@
 const state = {
-  main: 0
+  contextMenu: {
+    show: false,
+    x: 0,
+    y: 0,
+    width: 200,
+    height: 400
+  }
 }
 
 const mutations = {
-  DECREMENT_MAIN_COUNTER (state) {
-    state.main--
-  },
-  INCREMENT_MAIN_COUNTER (state) {
-    state.main++
+  SET (state, payload) {
+    state.contextMenu = {
+      ...state.contextMenu,
+      ...payload
+    }
   }
 }
 
@@ -19,6 +25,7 @@ const actions = {
 }
 
 export default {
+  namespaced: true,
   state,
   mutations,
   actions
