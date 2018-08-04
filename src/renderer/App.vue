@@ -3,7 +3,6 @@
     <div class="title-bar">
       <title-bar></title-bar>
     </div>
-
     <main-container></main-container>
   </div>
 </template>

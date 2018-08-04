@@ -5,6 +5,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+// 引入element-ui组件
+import { Tree } from 'element-ui'
+Vue.use(Tree)
+
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false

@@ -25,9 +25,7 @@ let rendererConfig = {
   entry: {
     renderer: path.join(__dirname, '../src/renderer/main.js')
   },
-  externals: [
-    ...Object.keys(dependencies || {}).filter(d => !whiteListedModules.includes(d))
-  ],
+  externals: [...Object.keys(dependencies || {}).filter(d => !whiteListedModules.includes(d))],
   module: {
     rules: [
       {
@@ -68,8 +66,32 @@ let rendererConfig = {
           options: {
             extractCSS: process.env.NODE_ENV === 'production',
             loaders: {
-              sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
-              scss: 'vue-style-loader!css-loader!sass-loader'
+              sass: [
+                'vue-style-loader',
+                'css-loader',
+                'postcss-loader',
+                'sass-loader?indentedSyntax=1',
+                {
+                  loader: 'sass-resources-loader',
+                  options: {
+                    // 需更改为项目中实际scss文件路径
+                    resources: path.resolve(__dirname, '../src/renderer/assets/scss/global.scss')
+                  }
+                }
+              ],
+              scss: [
+                'vue-style-loader',
+                'css-loader',
+                'postcss-loader',
+                'sass-loader',
+                {
+                  loader: 'sass-resources-loader',
+                  options: {
+                    // 需更改为项目中实际scss文件路径
+                    resources: path.resolve(__dirname, '../src/renderer/assets/scss/global.scss')
+                  }
+                }
+              ]
             }
           }
         }
@@ -118,9 +140,8 @@ let rendererConfig = {
         removeAttributeQuotes: true,
         removeComments: true
       },
-      nodeModules: process.env.NODE_ENV !== 'production'
-        ? path.resolve(__dirname, '../node_modules')
-        : false
+      nodeModules:
+        process.env.NODE_ENV !== 'production' ? path.resolve(__dirname, '../node_modules') : false
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
@@ -133,7 +154,7 @@ let rendererConfig = {
   resolve: {
     alias: {
       '@': path.join(__dirname, '../src/renderer'),
-      'vue$': 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js'
     },
     extensions: ['.js', '.vue', '.json', '.css', '.node']
   },
@@ -146,7 +167,7 @@ let rendererConfig = {
 if (process.env.NODE_ENV !== 'production') {
   rendererConfig.plugins.push(
     new webpack.DefinePlugin({
-      '__static': `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`
+      __static: `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`
     })
   )
 }

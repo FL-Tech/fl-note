@@ -31,7 +31,8 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  color: #f1f1f1;
+  color: $MAIN_FONT_COLOR;
+  padding-top: 40px;
   .libary,
   .doc-list {
     width: 200px;
