@@ -19,12 +19,13 @@
 import Libary from './libary'
 import DocList from './doc-list'
 import DragLine from './drag-line'
+import { NAMESPACE, SET_MENU_PANEL } from '@/store/mutation-types/ui.js'
 
 export default {
   components: {Libary, DocList, DragLine},
   methods: {
     globalClickHandle () {
-      this.$store.commit('ui/SET', {show: false})
+      this.$store.commit(`${NAMESPACE}/${SET_MENU_PANEL}`, { show: false })
     }
   }
 }

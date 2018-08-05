@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <div class="title-bar">
-      <title-bar></title-bar>
-    </div>
+    <title-bar></title-bar>
     <main-container></main-container>
   </div>
 </template>
@@ -25,6 +23,7 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-size: 14px;
 }
 
 html,
@@ -37,14 +36,6 @@ body,
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', STHeiti,
     'Microsoft Yahei', Tahoma, Simsun, sans-serif;
-}
-.title-bar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 40px;
-  z-index: 2;
 }
 
 #app {

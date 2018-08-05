@@ -1,5 +1,7 @@
 <template>
-  <div v-show="show" class="context-menu" @click.stop :style="{'left': calcLeft, 'top': calcTop, 'width': calcWidth, 'height': calcHeight}"></div>
+  <div v-show="show" class="context-menu" @click.stop :style="{'left': calcLeft, 'top': calcTop, 'width': calcWidth, 'height': calcHeight}">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -24,7 +26,8 @@ export default {
   position: fixed;
   background-color: rgba(38, 50, 56, 0.9);
   border-radius: 5px;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+  padding: 5px 0;
   z-index: 3;
 }
 </style>
