@@ -10,14 +10,14 @@
     <!-- 菜单树 -->
     <el-tree :data="libary" :props="defaultProps" default-expand-all :expand-on-click-node="false" @node-click="nodeClickHandle" @node-contextmenu.stop="nodeContextmenuHandle">
       <div class="custom-tree-node" slot-scope="{ node, data }">
-        <el-popover ref="popover" placement="top" v-model="visable">
-          <el-form ref="form" inline label-width="0px">
+        <el-popover placement="top" trigger="manual" v-model="showPopover">
+          <el-form inline label-width="0px">
             <el-form-item>
-              <el-input autofocus placeholder="请输入分类名称" size="mini" v-model="data.label"></el-input>
+              <el-input autofocus placeholder="请输入分类名称" size="mini" v-model="data.label" @focus="inputFocusHandle($event, data)"></el-input>
             </el-form-item>
           </el-form>
+          <span slot="reference">{{node.label}}</span>
         </el-popover>
-        <span v-popover:popover>{{node.label}}</span>
       </div>
 
     </el-tree>
@@ -40,14 +40,13 @@
     components: {ContextMenu, ContextItem},
     data () {
       return {
-        visable: false,
-        input: '',
         STATUS,
         libary: this.$model.Libary.value(),
         defaultProps: {
           children: 'children',
           label: 'label'
-        }
+        },
+        showPopover: false
       }
     },
     mounted () {
@@ -103,7 +102,14 @@
           isEditing: true
         }
         this.libary.push(newLibary)
-        this.visable = true
+        this.$nextTick(() => {
+          // 显示编辑框
+          this.showPopover = true
+        })
+      },
+      inputFocusHandle (e) {
+        console.log(e)
+        e.target.select()
       }
     }
   }
