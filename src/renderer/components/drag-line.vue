@@ -25,7 +25,7 @@ export default {
     left: 50%;
     width: 1px;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: $LINE_COLOR;
   }
 }
 </style>
