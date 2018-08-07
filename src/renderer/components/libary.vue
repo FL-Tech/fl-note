@@ -16,7 +16,10 @@
               <el-input autofocus placeholder="请输入分类名称" size="mini" v-model="data.label" @focus="inputFocusHandle($event, data)" @blur="inputBlurHandle(data)"></el-input>
             </el-form-item>
           </el-form>
-          <span slot="reference">{{node.label}}</span>
+          <div slot="reference" class="tree-item">
+            <i class="el-icon el-icon-fl-note-folder"></i>
+            <span class="node">{{node.label}}</span>
+          </div>
         </el-popover>
       </div>
 
@@ -126,5 +129,15 @@
   height: 100%;
   padding: 10px 0;
   user-select: none; // 禁止用户选中文本
+  .tree-item {
+    display: flex;
+    align-items: center;
+    .el-icon {
+      font-size: 18px;
+    }
+    .node {
+      padding-left: 0.2rem;
+    }
+  }
 }
 </style>

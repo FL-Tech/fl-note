@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss">
 @import './assets/scss/reset-element-ui.scss';
-
+@import './assets/iconfont/iconfont.css';
 * {
   box-sizing: border-box;
   margin: 0;
