@@ -10,7 +10,7 @@ const localSetting = Setting.value()
 
 // 再根据设置的目录创建一个用于同步的数据库
 const syncPath = path.join(localSetting.DEFAULT_SETTING_SAVE_PATH, '/sync-store.json')
-console.log('当前用户设置文档库同步路径为', syncPath)
+console.log('当前用户设置文档库同步路径', syncPath)
 
 const adapter = new FileSync(syncPath)
 
