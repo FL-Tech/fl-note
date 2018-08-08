@@ -1,6 +1,7 @@
-import { SET_MENU_PANEL } from '../mutation-types/ui'
+import { SET_MENU_PANEL, CLOSE_MENU_PANEL } from '../mutation-types/ui'
 
 const state = {
+  // 全局右键菜单
   contextMenu: {
     show: false,
     x: 0,
@@ -11,16 +12,19 @@ const state = {
 }
 
 const mutations = {
-  [SET_MENU_PANEL] (state, payload) {
+  [SET_MENU_PANEL](state, payload) {
     state.contextMenu = {
       ...state.contextMenu,
       ...payload
     }
+  },
+  [CLOSE_MENU_PANEL](state) {
+    state.contextMenu.show = false
   }
 }
 
 const actions = {
-  someAsyncTask ({ commit }) {
+  someAsyncTask({ commit }) {
     // do something async
     commit('INCREMENT_MAIN_COUNTER')
   }
