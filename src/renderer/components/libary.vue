@@ -8,23 +8,24 @@
       <context-item @click.native="addNewLibaryHandle">新增分类</context-item>
     </context-menu>
     <!-- 菜单树 -->
-    <el-tree :data="libary" :props="treeProps" default-expand-all :expand-on-click-node="false" @node-click="nodeClickHandle" @node-contextmenu="nodeContextmenuHandle">
-      <div class="custom-tree-node" slot-scope="{ node, data }">
-        <el-popover placement="bottom-end" trigger="manual" @show="popoverShowHandle(node, data)" v-model="data.showPopover">
-          <el-form inline label-width="0px">
-            <el-form-item>
-              <el-input placeholder="请输入分类名称" size="mini" v-model="data.label" v-focus @focus="inputFocusHandle($event, data)" @blur="inputBlurHandle(data)"></el-input>
-            </el-form-item>
-          </el-form>
-          <div slot="reference" class="tree-item">
-            <i class="el-icon el-icon-fl-note-folder"></i>
-            <span class="node">{{node.label}}</span>
-          </div>
-        </el-popover>
-      </div>
-
-    </el-tree>
-
+    <div class="libary-tree" ref="wrapper">
+      <el-tree :data="libary" :props="treeProps" default-expand-all :expand-on-click-node="false" @node-click="nodeClickHandle" @node-contextmenu="nodeContextmenuHandle">
+        <div class="custom-tree-node" slot-scope="{ node, data }">
+          <!-- 每个节点的弹出框（提供编辑信息录入） -->
+          <el-popover placement="bottom-end" trigger="manual" @show="popoverShowHandle(node, data)" v-model="data.showPopover">
+            <el-form inline label-width="0px">
+              <el-form-item>
+                <el-input placeholder="请输入分类名称" size="mini" v-model="data.label" v-focus @focus="inputFocusHandle($event, data)" @blur="inputBlurHandle(data)" @keyup.native.enter="inputBlurHandle(data)"></el-input>
+              </el-form-item>
+            </el-form>
+            <div slot="reference" class="tree-item">
+              <i class="el-icon el-icon-fl-note-folder"></i>
+              <span class="node">{{node.label}}</span>
+            </div>
+          </el-popover>
+        </div>
+      </el-tree>
+    </div>
   </div>
 </template>
 
@@ -54,6 +55,7 @@
     data () {
       return {
         STATUS,
+        scroll: undefined, // 滚动
         libary: this.$model.Libary.value(),
         rightClickNodeDate: undefined,
         treeProps: {
@@ -63,10 +65,6 @@
       }
     },
     mounted () {
-      // 对数组进行insert操作
-      // this.$model.Libary.insert({
-      //   label: '4级'
-      // }).write()
     },
     methods: {
       ...mapMutations(NAMESPACE, [ SET_MENU_PANEL, CLOSE_MENU_PANEL ]),
@@ -157,14 +155,19 @@
   height: 100%;
   padding: 10px 0;
   user-select: none; // 禁止用户选中文本
-  .tree-item {
-    display: flex;
-    align-items: center;
-    .el-icon {
-      font-size: 18px;
-    }
-    .node {
-      padding-left: 0.2rem;
+  .libary-tree {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    .tree-item {
+      display: flex;
+      align-items: center;
+      .el-icon {
+        font-size: 18px;
+      }
+      .node {
+        padding-left: 0.2rem;
+      }
     }
   }
 }

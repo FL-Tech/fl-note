@@ -1,6 +1,8 @@
 import { SET_MENU_PANEL, CLOSE_MENU_PANEL } from '../mutation-types/ui'
 
 const state = {
+  clientWidth: 1024, // 屏幕宽度
+  clientHeight: 768, // 屏幕高度
   // 全局右键菜单
   contextMenu: {
     show: false,

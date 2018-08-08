@@ -24,6 +24,15 @@ export default {
   margin: 0;
   padding: 0;
   font-size: 14px;
+  // 全局滚动条设置
+  &::-webkit-scrollbar {
+    width: 7px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: $POPOVER_BACKGROUND_COLOR;
+  }
 }
 
 html,
