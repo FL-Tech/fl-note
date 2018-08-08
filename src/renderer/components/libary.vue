@@ -10,10 +10,10 @@
     <!-- 菜单树 -->
     <el-tree :data="libary" :props="defaultProps" default-expand-all :expand-on-click-node="false" @node-click="nodeClickHandle" @node-contextmenu.stop="nodeContextmenuHandle">
       <div class="custom-tree-node" slot-scope="{ node, data }">
-        <el-popover placement="bottom-end" trigger="manual" v-model="data.showPopover">
+        <el-popover placement="bottom-end" trigger="manual" @show="popoverShowHandle(node, data)" v-model="data.showPopover">
           <el-form inline label-width="0px">
             <el-form-item>
-              <el-input autofocus placeholder="请输入分类名称" size="mini" v-model="data.label" @focus="inputFocusHandle($event, data)" @blur="inputBlurHandle(data)"></el-input>
+              <el-input placeholder="请输入分类名称" size="mini" v-model="data.label" v-focus @focus="inputFocusHandle($event, data)" @blur="inputBlurHandle(data)"></el-input>
             </el-form-item>
           </el-form>
           <div slot="reference" class="tree-item">
@@ -113,6 +113,10 @@
            */
           newLibary.showPopover = true
         })
+      },
+      popoverShowHandle(node, data) {
+        console.log(node)
+        console.log(data)
       },
       inputFocusHandle (e) {
         console.log(e)

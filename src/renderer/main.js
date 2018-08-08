@@ -18,9 +18,18 @@ Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(Popover)
 
+// 注册全局指令
+
+// 因为input的autofocus不好用，使用自定义指令实现
+Vue.directive('focus', function(el) {
+  el.querySelector('input').focus()
+})
+
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
-Vue.config.productionTip = false
+Vue.config.productionTip = true
+Vue.config.performance = true
+Vue.config.debug = true
 
 /* eslint-disable no-new */
 new Vue({
