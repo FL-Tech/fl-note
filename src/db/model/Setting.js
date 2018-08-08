@@ -1,6 +1,6 @@
 import db from '../local-store'
 import { getUserDataStorePath } from '../../utils/electron-utils'
-const NAMESPACE = 'Setting'
+const NAMESPACE = 'setting'
 
 const currentDB = db.read()
 

@@ -106,7 +106,11 @@
         }
         this.libary.push(newLibary)
         this.$nextTick(() => {
-          // 显示编辑框
+          /**
+           * 避免popover获取不到ref的位置，所以要先push到数组，
+           * 等待界面渲染后，再调用showPopover显示编辑框
+           *
+           */
           newLibary.showPopover = true
         })
       },
@@ -115,8 +119,9 @@
         e.target.select()
       },
       inputBlurHandle(data) {
-        console.log('输入框失去焦点')
+        console.log('输入框失去焦点，更新该列表到DB中', data)
         data.showPopover = false
+        this.$model.Libary.write() // 写入数据库
       }
     }
   }

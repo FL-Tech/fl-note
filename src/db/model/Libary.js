@@ -1,6 +1,6 @@
 import db from '../sync-store'
 
-const NAMESPACE = 'Setting'
+const NAMESPACE = 'libary'
 const currentDB = db.read()
 
 // 初始化创建文档库表
