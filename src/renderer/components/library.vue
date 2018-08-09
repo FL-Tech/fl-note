@@ -77,7 +77,9 @@ export default {
     return {
       STATUS,
       scroll: undefined, // 滚动
-      library: this.$model.Library.value(),
+      library: [ // 与数据库模型解构
+        ...this.$model.Library.value()
+      ],
       rightClickNodeDate: undefined,
       treeProps: {
         children: 'children',
@@ -152,18 +154,14 @@ export default {
       // 在当前右键节点下增加children
       this.pushNewFolderToLibrary(this.rightClickNodeDate.children)
     },
-    popoverShowHandle (node, data) {
-      console.log(node)
-      console.log(data)
-    },
+    popoverShowHandle (node, data) { },
     inputFocusHandle (e) {
-      console.log(e)
       e.target.select()
     },
     inputBlurHandle (data) {
       console.log('输入框失去焦点，更新该列表到DB中', data)
       data.showPopover = false
-      this.$model.Library.write() // 写入数据库
+      this.$model.Library.insert(data).write() // 写入数据库
     }
   }
 }

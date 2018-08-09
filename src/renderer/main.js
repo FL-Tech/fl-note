@@ -21,8 +21,15 @@ Vue.use(Popover)
 // 注册全局指令
 
 // 因为input的autofocus不好用，使用自定义指令实现
-Vue.directive('focus', function (el) {
-  el.querySelector('input').focus()
+// 注册一个全局自定义指令 `v-focus`
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时
+  inserted: function (el) {
+    // 聚焦元素
+    setTimeout(() => {
+      el.querySelector('input').focus()
+    }, 100)
+  }
 })
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))

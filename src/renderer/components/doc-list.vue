@@ -1,11 +1,17 @@
 <template>
-  <div class="doc-list"></div>
+  <div class="doc-list">
+    sdf
+  </div>
 </template>
 
 
 <script>
 export default {
-
+  data () {
+    return {
+      doc: this.$model.Doc.value()
+    }
+  }
 }
 </script>
 
