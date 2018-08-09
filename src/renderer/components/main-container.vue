@@ -1,7 +1,8 @@
 <template>
-  <div class="main-container" @click="globalClickHandle">
-    <div class="libary">
-      <libary></libary>
+  <div class="main-container"
+       @click="globalClickHandle">
+    <div class="library">
+      <library></library>
     </div>
     <drag-line></drag-line>
     <div class="doc-list">
@@ -16,13 +17,13 @@
 
 
 <script>
-import Libary from './libary'
+import Library from './library'
 import DocList from './doc-list'
 import DragLine from './drag-line'
 import { NAMESPACE, SET_MENU_PANEL } from '@/store/mutation-types/ui.js'
 
 export default {
-  components: {Libary, DocList, DragLine},
+  components: { Library, DocList, DragLine },
   methods: {
     globalClickHandle () {
       this.$store.commit(`${NAMESPACE}/${SET_MENU_PANEL}`, { show: false })
@@ -39,7 +40,7 @@ export default {
   display: flex;
   color: $MAIN_FONT_COLOR;
   padding-top: 40px;
-  .libary,
+  .library,
   .doc-list {
     width: 200px;
   }

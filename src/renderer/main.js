@@ -1,11 +1,11 @@
-import Vue from 'vue'
-import axios from 'axios'
+import { Button, Form, FormItem, Input, Popover, Tree } from 'element-ui'
 
 import App from './App'
+import Vue from 'vue'
+import axios from 'axios'
+import model from '../db/model'
 import router from './router'
 import store from './store'
-import model from '../db/model'
-import { Tree, Button, Form, FormItem, Input, Popover } from 'element-ui'
 
 // 挂载数据库
 Vue.prototype.$model = model
@@ -21,7 +21,7 @@ Vue.use(Popover)
 // 注册全局指令
 
 // 因为input的autofocus不好用，使用自定义指令实现
-Vue.directive('focus', function(el) {
+Vue.directive('focus', function (el) {
   el.querySelector('input').focus()
 })
 

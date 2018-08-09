@@ -1,7 +1,7 @@
+import Library from './Library'
 import Setting from './Setting'
-import Libary from './Libary'
 
 export default {
   Setting,
-  Libary
+  Library
 }

@@ -14,19 +14,19 @@ const state = {
 }
 
 const mutations = {
-  [SET_MENU_PANEL](state, payload) {
+  [SET_MENU_PANEL] (state, payload) {
     state.contextMenu = {
       ...state.contextMenu,
       ...payload
     }
   },
-  [CLOSE_MENU_PANEL](state) {
+  [CLOSE_MENU_PANEL] (state) {
     state.contextMenu.show = false
   }
 }
 
 const actions = {
-  someAsyncTask({ commit }) {
+  someAsyncTask ({ commit }) {
     // do something async
     commit('INCREMENT_MAIN_COUNTER')
   }

@@ -1,6 +1,6 @@
 import db from '../sync-store'
 
-const NAMESPACE = 'libary'
+const NAMESPACE = 'library'
 const currentDB = db.read()
 
 // 初始化创建文档库表
@@ -8,6 +8,6 @@ if (!currentDB.has(NAMESPACE).value()) {
   currentDB.set(NAMESPACE, []).write()
 }
 
-const Libary = currentDB.get(NAMESPACE)
+const Library = currentDB.get(NAMESPACE)
 
-export default Libary
+export default Library
