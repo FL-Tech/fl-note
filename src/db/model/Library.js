@@ -1,13 +1,27 @@
 import db from '../sync-store'
 
 const NAMESPACE = 'library'
-const currentDB = db.read()
 
 // 初始化创建文档库表
-if (!currentDB.has(NAMESPACE).value()) {
-  currentDB.set(NAMESPACE, []).write()
+const currentDb = db.read()
+const isExist = !currentDb.has(NAMESPACE).value()
+if (isExist) {
+  currentDb.set(NAMESPACE, []).write()
 }
 
-const Library = currentDB.get(NAMESPACE)
+const getInstance = () => {
+  return db.read().get(NAMESPACE)
+}
 
-export default Library
+export default {
+  add (newLib) {
+    console.log('新增文档库', newLib)
+    getInstance()
+      .insert(newLib)
+      .write()
+  },
+  get () {
+    const value = getInstance().value()
+    return [...value]
+  }
+}

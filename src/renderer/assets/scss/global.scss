@@ -5,6 +5,10 @@ $HOVER_BACKGROUND_COLOR: rgba(0, 0, 0, 0.2); // 获取焦点背景颜色
 $POPOVER_BACKGROUND_COLOR: rgba(0, 0, 0, 0.5); // 弹出框背景颜色
 $POPOVER_BORDER: 1px solid rgba(0, 0, 0, 0.1); // 弹出框边框
 $POPOVER_BOX_SHADOW: 0 0 5px 1px rgba(0, 0, 0, 0.1); // 弹出框边框
+
+$CONTENT_PADDING: 5px 0;
+$ITEM_PADDING: 5px 20px;
+
 @mixin POPOVER {
   border-radius: 5px;
   background: $POPOVER_BACKGROUND_COLOR;

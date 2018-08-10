@@ -1,11 +1,14 @@
 <template>
-  <div v-show="show" class="context-menu" @click.stop :style="{'left': calcLeft, 'top': calcTop, 'width': calcWidth, 'height': calcHeight}">
+  <div v-show="show"
+       class="context-menu"
+       @click.stop
+       :style="{'left': calcLeft, 'top': calcTop, 'width': calcWidth, 'height': calcHeight}">
     <slot></slot>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 
 const PX_UNIT = 'px'
 export default {
@@ -39,7 +42,7 @@ export default {
 .context-menu {
   @include POPOVER;
   position: fixed;
-  padding: 5px 0;
+  padding: $CONTENT_PADDING;
   z-index: 3;
 }
 </style>

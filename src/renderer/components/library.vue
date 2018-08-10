@@ -5,7 +5,8 @@
     <context-menu>
       <context-item v-if="rightClickNodeDate"
                     @click.native="editNoteHandle">编辑</context-item>
-      <context-item v-if="rightClickNodeDate">新建文档</context-item>
+      <context-item v-if="rightClickNodeDate"
+                    @click.native="addNewDocHandle">新建文档</context-item>
       <context-item v-if="rightClickNodeDate"
                     @click.native="addNewSubLibraryHandle">新增子分类</context-item>
       <context-item @click.native="addNewLibraryHandle">新增分类</context-item>
@@ -55,8 +56,9 @@
 import { mapMutations } from 'vuex'
 import ContextMenu from './context-menu/context-menu'
 import ContextItem from './context-menu/context-item'
-import { NAMESPACE, SET_MENU_PANEL, CLOSE_MENU_PANEL } from '@/store/mutation-types/ui.js'
+import { NAMESPACE, SET_MENU_PANEL, CLOSE_MENU_PANEL } from '@/store/mutation-types/ui'
 
+import { NAMESPACE as DOC_NAMESPACE, ADD_DOC } from '@/store/mutation-types/doc'
 const STATUS = {
   DEFAULT: 'DEFAULT',
   EDITING: 'EDITING'
@@ -77,9 +79,7 @@ export default {
     return {
       STATUS,
       scroll: undefined, // 滚动
-      library: [ // 与数据库模型解构
-        ...this.$model.Library.value()
-      ],
+      library: this.$model.Library.get(),
       rightClickNodeDate: undefined,
       treeProps: {
         children: 'children',
@@ -161,7 +161,16 @@ export default {
     inputBlurHandle (data) {
       console.log('输入框失去焦点，更新该列表到DB中', data)
       data.showPopover = false
-      this.$model.Library.insert(data).write() // 写入数据库
+      this.$model.Library.add(data)
+    },
+    addNewDocHandle () {
+      const newDoc = {
+        'libraryId': this.rightClickNodeDate.id,
+        'title': 'Untitle',
+        'createTime': '2018-07-15',
+        'content': ''
+      }
+      this.$store.commit(`${DOC_NAMESPACE}/${ADD_DOC}`, newDoc)
     }
   }
 }

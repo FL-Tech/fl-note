@@ -18,7 +18,7 @@
 
 <script>
 import Library from './library'
-import DocList from './doc-list'
+import DocList from './doc/doc-list'
 import DragLine from './drag-line'
 import { NAMESPACE, SET_MENU_PANEL } from '@/store/mutation-types/ui.js'
 
