@@ -167,7 +167,7 @@ export default {
       const newDoc = {
         'libraryId': this.rightClickNodeDate.id,
         'title': 'Untitle',
-        'createTime': '2018-07-15',
+        'createDate': new Date(),
         'content': ''
       }
       this.$store.commit(`${DOC_NAMESPACE}/${ADD_DOC}`, newDoc)

@@ -24,6 +24,7 @@ export default {
 <style lang="scss" scoped>
 .context-item {
   padding: $ITEM_PADDING;
+  transition: background 0.5s;
   &:hover {
     background-color: $HOVER_BACKGROUND_COLOR;
   }

@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import { BrowserWindow, app } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -36,6 +36,11 @@ function createWindow () {
       backgroundThrottling: false // 当页面被置于非激活窗口的时候是否停止动画和计时器
     }
   }
+  if (process.platform === 'win32') {
+    // 针对window平台兼容
+    browserOpts.backgroundColor = '#263238'
+  }
+
   mainWindow = new BrowserWindow(browserOpts)
 
   mainWindow.loadURL(winURL)

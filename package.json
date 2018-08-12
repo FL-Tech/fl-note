@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "dayjs": "^1.7.5",
     "node-sass": "^4.9.2",
     "sass-loader": "^7.1.0",
     "vue": "^2.3.3",

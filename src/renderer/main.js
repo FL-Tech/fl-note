@@ -27,6 +27,7 @@ Vue.directive('focus', {
   inserted: function (el) {
     // 聚焦元素
     setTimeout(() => {
+      console.log('设置自动获取焦点focus')
       el.querySelector('input').focus()
     }, 100)
   }
