@@ -6,7 +6,7 @@
     <main>
       <div class="left-side">
         <span class="title">
-          Welcome to your new!
+          Welcome to your new project!
         </span>
         <system-information></system-information>
       </div>
