@@ -21,7 +21,7 @@ export default {
         return state.docs.map(doc => {
           return {
             ...doc,
-            createDateOrigin: new Date(doc.createDate)
+            createDateOrigin: new Date(doc.createDate || new Date())
           }
         })
       }

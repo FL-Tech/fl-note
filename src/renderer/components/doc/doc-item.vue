@@ -12,11 +12,13 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
+      default: 'Untitle'
     },
     createDate: {
       type: Date,
-      required: false
+      required: false,
+      default: new Date()
     }
   },
   computed: {
@@ -34,7 +36,7 @@ export default {
   padding: $ITEM_PADDING;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: $HOVER_BACKGROUND_COLOR 1px solid;
+  border-bottom: $LINE_COLOR 1px solid;
   transition: background 0.5s;
   &:hover {
     background-color: $HOVER_BACKGROUND_COLOR;
